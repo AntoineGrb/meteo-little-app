@@ -1,0 +1,172 @@
+$spacing:5px;
+
+//---- BASE ----- 
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: $color-background;
+}
+
+h1, h2, h3, p {
+    color:white;
+}
+
+h1 {
+    font-size: 1.6rem;
+}
+
+//---- HEADER ----- 
+.header {
+    padding: calc($spacing * 4) 0;
+    text-align: center;
+
+    i {
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+}
+
+//---- WIDGETS ----- 
+//Style commun
+.section {
+    padding: calc($spacing * 2);
+    margin: 0 calc($spacing) calc($spacing * 4);
+    border-radius: 5px;
+    background-color: $color-section;
+
+    &__title {
+        margin-bottom: calc($spacing * 4);
+    }
+
+    &__header {
+        margin-bottom: calc($spacing * 2);
+    }
+}
+
+//Widget today
+.today {
+
+    //WIDGET MAIN
+    &__widget {
+        display: flex;
+        align-items: center;
+        gap: calc($spacing);
+        margin: calc($spacing) calc($spacing) calc($spacing * 2);
+        border-radius: 5px;
+        padding: calc($spacing * 4) calc($spacing * 2);
+        background-color: $color-widget;
+
+        .item.weather {
+            flex:1;
+            text-align: center;
+
+            img {
+                width: 40px;
+            }
+        }
+
+        .item.temperature {
+            flex:1;
+            text-align: left;
+            font-size: 1.7rem;
+            display: flex;
+            gap: 1px;
+
+            img {
+                width: 30px;
+            }
+        }
+
+        .item.wind {
+            flex:3;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .item.rain {
+            flex:2;
+            text-align: center;
+            font-size: 1rem;
+        }
+    }
+
+    &__show-more {
+        margin-bottom: calc($spacing);
+        text-align: right;
+        padding-right: calc($spacing * 2);
+
+        i {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        padding-left: calc($spacing * 3);
+
+        // WIDGET LIST
+        .subsection__widget-small {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: calc($spacing);
+            padding: calc($spacing * 2) calc($spacing * 2);
+            border-radius: 5px; 
+            background-color: $color-widget;
+
+            .item.channel {
+                flex: 2;
+            }
+
+            .item.weather {
+                flex:1;
+                text-align: center;
+    
+                img {
+                    width: 30px;
+                }
+            }
+    
+            .item.temperature {
+                flex:1;
+                text-align: left;
+                font-size: 1.3rem;
+            }
+    
+            .item.wind {
+                flex:3;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+    
+            .item.rain {
+                flex:2;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+        } 
+    }
+}
+
+//Widget weeks
+.week {
+    &__widget {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-widget;
+        padding-bottom:5px ;
+        border-radius: 5px;
+
+        &__day {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            padding: calc($spacing * 2);
+            border-bottom: 1px solid white;
+        }
+    }
+}
+
