@@ -1,0 +1,10 @@
+//---- HEADER ----- 
+.header {
+    padding: calc($spacing * 4) 0;
+    text-align: center;
+
+    i {
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+}

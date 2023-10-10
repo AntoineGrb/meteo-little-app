@@ -3,3 +3,33 @@
     padding:0;
     box-sizing: border-box;
 }
+
+//---- BASE ----- 
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: $color-background;
+}
+
+h1, h2, h3, p, summary {
+    color:white;
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    font-size: 1.6rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.font-widget {
+    font-family: 'Montserrat', sans-serif;
+}

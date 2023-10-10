@@ -6,131 +6,158 @@
 	<title></title>
     <link rel ="stylesheet" href = './css/style.css' />
 	<link rel="icon" type="image/png" href="" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
     <script src="../src/js/script.js" type="module"> </script>
 	<script src="https://kit.fontawesome.com/5c520df75a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <main class="container">
-
+    <div class="container">
 		<header class="header">
 			<h1 class="header__title"> Saint Maur des fossés <i class="fa-solid fa-pen"></i> </h1>
 		</header>
 
 		<!-- METEO DU JOUR -->
-		<section class="section today">
-			<div class="section__title today__title">
-				<h1> Today </h1>
-			</div>
-			<div class="section__header today__header">
-				<p> Mardi 5 septembre | 17:10 </p>
-			</div>
+		<article class="section today">
+			<h2 class="section__title today__title"> Today </h2>
+			<h3 class="section__header today__header"> <time> Mardi 5 septembre </time> |  <time> 17:10 </time> </h3>
 
 			<!-- Widget principal-->
 			<div class="section__widget today__widget">
 				<div class="item weather"> 
-					<img src="../../src/images/soleil.png" alt="sun"> 
+					<img class='weather-icon' src="../../src/images/soleil.png" alt="sun"> 
 				</div>
 				<div class="item temperature"> 
-					<p> 21°C </p> 
-					<img src="../../src/images/thermometre.png" alt="">
+					<p class="font-widget"> 21°C </p> 
+					<img class="weather-icon" src="../../src/images/thermometre.png" alt="">
 				</div>
 				<div class="item wind"> 
-					<p> Sud </p> 
-					<p> 8 - 19km/h </p> 
+					<p class="font-widget"> Sud </p> 
+					<p class="font-widget"> 8 - 19km/h </p> 
 				</div>
 				<div class="item rain"> 
-					<p> 10% </p> 
-					<p> 0.1mm </p> 
+					<p class="font-widget"> 10% </p> 
+					<p class="font-widget"> 0.1mm </p> 
 				</div>
-			</div>
-			<div class="section__show-more today__show-more">
-				<p> Voir détails <i class="fa-solid fa-chevron-down"></i> </p>
 			</div>
 
 			<!-- Widget listing-->
-			<div class="section__list today__list">
-					<div class="subsection__widget-small today__widget-small">
+			<details>
+				<summary class="section__detail today__details"> Voir détails  </summary>
+				
+				<div class="section__list today__list">
+					<div class="section__sub-widget today__sub-widget">
 						<div class="item channel">
-							<p> Méteo France </p>
+							<p class="font-widget"> Méteo France </p>
 						</div>
 						<div class="item weather"> 
-							<img src="../../src/images/nuage.png" alt="sun"> 
+							<img class="weather-icon" src="../../src/images/nuage.png" alt="sun"> 
 						</div>
 						<div class="item temperature"> 
-							<p> 21°C </p> 
+							<p class="font-widget"> 21°C </p> 
 						</div>
 						<div class="item wind"> 
-							<p> 8 - 19km/h </p> 
+							<p class="font-widget"> 8 - 19km/h </p> 
 						</div>
 						<div class="item rain"> 
-							<p>  </p> 
-							<p>  </p> 
+							<p class="font-widget">  </p> 
+							<p class="font-widget">  </p> 
 						</div>
 					</div>
 
-					<div class="subsection__widget-small today__widget-small">
+					<div class="section__sub-widget today__sub-widget">
 						<div class="item channel">
-							<p> MéteoG </p>
+							<p class="font-widget"> MéteoG </p>
 						</div>
 						<div class="item weather"> 
-							<img src="../../src/images/soleil.png" alt="sun"> 
+							<img class='weather-icon' src="../../src/images/soleil.png" alt="sun"> 
 						</div>
 						<div class="item temperature"> 
-							<p> 22°C </p> 
+							<p class="font-widget"> 22°C </p> 
 						</div>
 						<div class="item wind"> 
-							<p> 8 - 30km/h </p> 
+							<p class="font-widget"> 8 - 30km/h </p> 
 						</div>
 						<div class="item rain"> 
-							<p> 10% </p> 
-							<p> 0.1mm </p>  
+							<p class="font-widget"> 10% </p> 
+							<p class="font-widget"> 0.1mm </p>  
 						</div>
 					</div>
-			</div>
-		</section>
+				</div>
+			</details>
+		</article>
 
 		<!--- PLEUVOIR DANS L'HEURE -->
-		<section class="section week">
-			<div class="section__title week__title">
-				<h1> Pluie dans l'heure ? </h1>
-			</div>
-		</section>
+		<article class="section week">
+			<h2 class="section__title week__title"> Pluie dans l'heure ? </h2>
+		</article>
 
 		<!-- METEO DE LA SEMAINE -->
-		<section class="section week">
-			<div class="section__title week__title">
-				<h1> This week </h1>
-			</div>
-			<div class="section__header week__header">
-				<p> Vue : <span> Moyenne </span> </p>
-			</div>
+		<article class="section week">
+			<h2 class="section__title week__title"> Cette semaine </h2>
+			<h3 class="section__header week__header"> Vue : <span> Moyenne </span> <i class="fa-solid fa-chevron-down"></i> </h3>
 			<div class="week__widget">
 				<div class="week__widget__day">
-					<p> 26/12 : </p>
-					<p> Soleil </p>
-					<p> Température </p>
-					<p> Vent </p>
-					<p> Pluie </p>
+					<div class="item date">
+						<p class="font-widget"> <time>26/12</time>  </p>
+					</div>
+					<div class="item weather">
+						<img class="weather-icon" src="../../src/images/pluvieux-2.png" alt="sun">
+					</div>
+					<div class="item temperature">
+						<p class="font-widget"> 20°C </p>
+					</div>
+					<div class="item wind" >
+						<p class="font-widget"> Vent </p>
+					</div>
+					<div class="item rain">
+						<p class="font-widget"> 10% </p> 
+						<p class="font-widget"> 1.2mm </p> 
+					</div>
 				</div>
 				<div class="week__widget__day">
-					<p> 27/12 : </p>
-					<p> Soleil </p>
-					<p> Température </p>
-					<p> Vent </p>
-					<p> Pluie </p>
+					<div class="item date">
+						<p class="font-widget"> <time>26/12</time>  </p>
+					</div>
+					<div class="item weather">
+						<img class="weather-icon" src="../../src/images/nuageux-2.png" alt="sun">
+					</div>
+					<div class="item temperature">
+						<p class="font-widget"> 5°C </p>
+					</div>
+					<div class="item wind" >
+						<p class="font-widget"> Nord </p> 
+						<p class="font-widget"> 19 - 50km/h </p> 
+					</div>
+					<div class="item rain">
+						
+					</div>
 				</div>
 				<div class="week__widget__day">
-					<p> 28/12 : </p>
-					<p> Soleil </p>
-					<p> Température </p>
-					<p> Vent </p>
-					<p> Pluie </p>
+					<div class="item date">
+						<p class="font-widget"> <time>26/12</time>  </p>
+					</div>
+					<div class="item weather">
+						<img class="weather-icon" src="../../src/images/neigeux.png" alt="sun">
+					</div>
+					<div class="item temperature">
+						<p class="font-widget"> 25°C </p>
+					</div>
+					<div class="item wind" >
+						<p class="font-widget"> Sud </p> 
+						<p class="font-widget"> 8 - 19km/h </p> 
+					</div>
+					<div class="item rain">
+						<p class="font-widget"> 50% </p> 
+						<p class="font-widget"> 0.1mm </p> 
+					</div>
 				</div>
 			</div>
-		</section>
+		</article>
 		<footer>
 			<p> Agrégateur de météo - A. Grubert </p>
 		</footer>
-	</main>
+	</div>
 </body>
 </html>

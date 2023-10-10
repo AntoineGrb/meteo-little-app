@@ -4,16 +4,6 @@
   box-sizing: border-box;
 }
 
-footer {
-  height: 50px;
-  width: 100%;
-  margin-top: 50px;
-  border-top: 1px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
   width: 100%;
   max-width: 500px;
@@ -21,12 +11,26 @@ footer {
   background-color: #171818;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, summary {
   color: white;
+  font-family: "Lato", sans-serif;
 }
 
 h1 {
   font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.font-widget {
+  font-family: "Montserrat", sans-serif;
 }
 
 .header {
@@ -36,6 +40,16 @@ h1 {
 .header i {
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+footer {
+  height: 50px;
+  width: 100%;
+  margin-top: 50px;
+  border-top: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .section {
@@ -59,13 +73,11 @@ h1 {
   border-radius: 5px;
   padding: 20px 10px;
   background-color: #78A1BB;
+  font-family: "Montserrat", sans-serif;
 }
 .today__widget .item.weather {
   flex: 1;
   text-align: center;
-}
-.today__widget .item.weather img {
-  width: 40px;
 }
 .today__widget .item.temperature {
   flex: 1;
@@ -73,9 +85,6 @@ h1 {
   font-size: 1.7rem;
   display: flex;
   gap: 1px;
-}
-.today__widget .item.temperature img {
-  width: 30px;
 }
 .today__widget .item.wind {
   flex: 3;
@@ -87,21 +96,23 @@ h1 {
   text-align: center;
   font-size: 1rem;
 }
-.today__show-more {
+
+.today__details {
   margin-bottom: 5px;
   text-align: right;
   padding-right: 10px;
 }
-.today__show-more i {
+.today__details i {
   font-size: 1rem;
   cursor: pointer;
 }
+
 .today__list {
   display: flex;
   flex-direction: column;
   padding-left: 15px;
 }
-.today__list .subsection__widget-small {
+.today__list .today__sub-widget {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -110,27 +121,25 @@ h1 {
   border-radius: 5px;
   background-color: #78A1BB;
 }
-.today__list .subsection__widget-small .item.channel {
+.today__list .today__sub-widget .item.channel {
   flex: 2;
 }
-.today__list .subsection__widget-small .item.weather {
+.today__list .today__sub-widget .item.weather {
   flex: 1;
   text-align: center;
+  margin-right: 5px;
 }
-.today__list .subsection__widget-small .item.weather img {
-  width: 30px;
-}
-.today__list .subsection__widget-small .item.temperature {
+.today__list .today__sub-widget .item.temperature {
   flex: 1;
   text-align: left;
   font-size: 1.3rem;
 }
-.today__list .subsection__widget-small .item.wind {
+.today__list .today__sub-widget .item.wind {
   flex: 3;
   font-size: 0.9rem;
   text-align: center;
 }
-.today__list .subsection__widget-small .item.rain {
+.today__list .today__sub-widget .item.rain {
   flex: 2;
   text-align: center;
   font-size: 0.9rem;
@@ -142,13 +151,45 @@ h1 {
   background-color: #78A1BB;
   padding-bottom: 5px;
   border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
 }
 .week__widget__day {
   display: flex;
   justify-content: space-around;
-  gap: 10px;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid white;
+}
+.week__widget__day .item.date {
+  flex: 1;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.week__widget__day .item.weather {
+  flex: 1;
+  text-align: center;
+  margin-right: 5px;
+}
+.week__widget__day .item.temperature {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  gap: 1px;
+  font-size: 1.1rem;
+}
+.week__widget__day .item.wind {
+  flex: 3;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.week__widget__day .item.rain {
+  flex: 2;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.weather-icon {
+  width: 40px;
 }
 
 /*# sourceMappingURL=style.css.map */
