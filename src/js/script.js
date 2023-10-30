@@ -12,11 +12,42 @@ const weatherIcons = [
     {title:'orages', img:'./src/images/orage.png', map:[100,101,102,103,104,105,106,107,108,120,121,122,123,124,125,126,127,128,130,131,132,133,134,135,136,137,138,140,141]},
 ]
 
-async function fetchMeteoConcept() {
-    const url = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=94068`;
+meteoApp();
+
+async function meteoApp() {
+
+    //APIs
+    const urlMeteoConcept = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=94068`
+    
+    //Fetch les 3 APIs
+    // [dataMeteoConcept, data2, data3] = await Promise.all([
+    //     fetchData(urlMeteoConcept),
+    //     fetchData(url2),
+    //     fetchData(ur3),
+    // ]);
+    const dataMeteoConcept = await fetchData(urlMeteoConcept);
+    const data2 = []
+    const data3 = []
+
+    //Afficher les données
+    displayData(dataMeteoConcept, data2, data3);
+    console.log(dataMeteoConcept);
+
+    //Calculer la moyenne
+    const dataAvg = calculateAverage(dataMeteoConcept, data2, data3);
+
+    //Display la moyenne
+    displayAverage(dataAvg)
+}
+
+async function fetchData(url) {
     const httpResponse = await fetch(url);
     const data = await httpResponse.json()
     console.log(data);
+    return data
+}
+
+function displayData(data1, data2, data3) {
 
     let weatherCode = 0;
     let icon = '';
@@ -28,7 +59,7 @@ async function fetchMeteoConcept() {
     const meteoConceptTodayProbaRain = document.querySelector('.today__sub-widget.meteo-concept > .rain .proba-rain-value');
     const meteoConceptTodayQuantityRain = document.querySelector('.today__sub-widget.meteo-concept > .rain .qte-rain-value');
 
-    weatherCode = Number(data.forecast[0].weather);
+    weatherCode = Number(data1.forecast[0].weather);
     console.log(weatherCode);
     weatherIcons.forEach(el => {
         if (el.map.includes(weatherCode)) {
@@ -41,53 +72,32 @@ async function fetchMeteoConcept() {
     })
 
     meteoConceptTodayIcon.src = icon;
-    meteoConceptTodayTemp.innerText = data.forecast[0].tmax;
-    meteoConceptTodayWind.innerText = data.forecast[0].wind10m
-    meteoConceptTodayProbaRain.innerText = data.forecast[0].probarain
-    meteoConceptTodayQuantityRain.innerText = data.forecast[0].rr10
-    
+    meteoConceptTodayTemp.innerText = data1.forecast[0].tmax;
+    meteoConceptTodayWind.innerText = data1.forecast[0].wind10m
+    meteoConceptTodayProbaRain.innerText = data1.forecast[0].probarain
+    meteoConceptTodayQuantityRain.innerText = data1.forecast[0].rr10
+}
 
-    //METEO XXX
-    const meteoXXXTodayIcon = document.querySelector('.today__sub-widget.meteo-xxx .weather-icon');
-    const meteoXXXTodayTemp = document.querySelector('.today__sub-widget.meteo-xxx > .temperature .temp-value');
-    const meteoXXXTodayWind = document.querySelector('.today__sub-widget.meteo-xxx > .wind .wind-value');
-    const meteoXXXTodayProbaRain = document.querySelector('.today__sub-widget.meteo-xxx > .rain .proba-rain-value');
-    const meteoXXXTodayQuantityRain = document.querySelector('.today__sub-widget.meteo-xxx > .rain .qte-rain-value');
+function calculateAverage(data1, data2, data3) {
+    const tempAvg = (data1.forecast[0].tmax);
+    const windAvg = (data1.forecast[0].wind10m);
+    const probaRainAvg = (data1.forecast[0].probarain);
+    const quantityRainAvg = (data1.forecast[0].rr10);
 
-    weatherCode = 0;
-    weatherIcons.forEach(el => {
-        if (el.map.includes(weatherCode)) {
-            return icon = el.img
-        }   
-        if (icon === '') {
-            icon = './src/images/nuageux.png'
-        }
-        return icon
-    })
+    return { tempAvg, windAvg, probaRainAvg, quantityRainAvg }
+}
 
-    meteoXXXTodayIcon.src = icon;
-    meteoXXXTodayTemp.innerText = 20;
-    meteoXXXTodayWind.innerText = 15;
-    meteoXXXTodayProbaRain.innerText = 50;
-    meteoXXXTodayQuantityRain.innerText = 5;
-
-    //MOYENNE METEOS
-    //Sélecteurs
+function displayAverage(dataAvg) {
+    console.log(dataAvg);
     const meteoAvgTodayIcon = document.querySelector('.today__widget .weather-icon');
     const meteoAvgTodayTemp = document.querySelector('.today__widget > .temperature .temp-value');
     const meteoAvgTodayWind = document.querySelector('.today__widget > .wind .wind-value');
-    const meteoAvgTodayProbaRain = document.querySelector('.today__widget.meteo-xxx > .rain .proba-rain-value');
-    const meteoAvgTodayQuantityRain = document.querySelector('.today__widget.meteo-xxx > .rain .qte-rain-value');
+    const meteoAvgTodayProbaRain = document.querySelector('.today__widget > .rain .proba-rain-value');
+    const meteoAvgTodayQuantityRain = document.querySelector('.today__widget > .rain .qte-rain-value');
 
-    //Display
-    // meteoAvgTodayIcon.innerText = icon;
-    // meteoAvgTodayTemp.innerText = Math.round(numAverage(data.forecast[0].tmax,20));
-    // meteoAvgTodayWind.innerText = Math.round(numAverage(data.forecast[0].wind10m, 15));
-    // meteoAvgTodayProbaRain.innerText = Math.round(numAverage(data.forecast[0].probarain, 50));
-    // meteoAvgTodayQuantityRain.innerText = Math.round(numAverage(data.forecast[0].rr10, 5));
+    meteoAvgTodayIcon.src = './src/images/soleil.png'; //! A mettre à jour
+    meteoAvgTodayTemp.innerText = dataAvg.tempAvg
+    meteoAvgTodayWind.innerText = dataAvg.windAvg
+    meteoAvgTodayProbaRain.innerText = dataAvg.probaRainAvg
+    meteoAvgTodayQuantityRain.innerText = dataAvg.quantityRainAvg
 }
-
-fetchMeteoConcept();
-
-// async function displayResults() {
-// }

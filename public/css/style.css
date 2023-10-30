@@ -82,19 +82,19 @@ footer {
 .today__widget .item.temperature {
   flex: 1;
   text-align: left;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   display: flex;
   gap: 1px;
 }
 .today__widget .item.wind {
   flex: 3;
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 .today__widget .item.rain {
   flex: 2;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .today__details {
@@ -103,7 +103,7 @@ footer {
   padding-right: 10px;
 }
 .today__details i {
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -123,6 +123,7 @@ footer {
 }
 .today__list .today__sub-widget .item.channel {
   flex: 2;
+  font-size: 0.6rem;
 }
 .today__list .today__sub-widget .item.weather {
   flex: 1;
@@ -132,17 +133,17 @@ footer {
 .today__list .today__sub-widget .item.temperature {
   flex: 1;
   text-align: left;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 .today__list .today__sub-widget .item.wind {
   flex: 3;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 .today__list .today__sub-widget .item.rain {
   flex: 2;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .week__widget {
@@ -163,7 +164,7 @@ footer {
 .week__widget__day .item.date {
   flex: 1;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
 }
 .week__widget__day .item.weather {
   flex: 1;
@@ -175,21 +176,21 @@ footer {
   text-align: left;
   display: flex;
   gap: 1px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 .week__widget__day .item.wind {
   flex: 3;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 .week__widget__day .item.rain {
   flex: 2;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .weather-icon {
-  width: 40px;
+  width: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */
