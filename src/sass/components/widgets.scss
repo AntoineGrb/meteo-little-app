@@ -19,96 +19,57 @@
 
 //Main widget
 .today__widget {
-        display: flex;
-        align-items: center;
-        gap: calc($spacing);
-        margin: calc($spacing) calc($spacing) calc($spacing * 2);
-        border-radius: 5px;
-        padding: calc($spacing * 4) calc($spacing * 2);
-        background-color: $color-widget;
-        font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: calc($spacing);
+    margin: calc($spacing) calc($spacing) calc($spacing * 2);
+    border-radius: 5px;
+    padding: calc($spacing * 4) calc($spacing * 2);
+    background-color: $color-widget;
+    font-family: 'Montserrat', sans-serif;
 
-        .item.weather {
-            flex:1;
-            text-align: center;
-        }
-
-        .item.temperature {
-            flex:1;
-            text-align: left;
-            font-size: 1.2rem;
-            display: flex;
-            gap: 1px;
-        }
-
-        .item.wind {
-            flex:3;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-
-        .item.rain {
-            flex:2;
-            text-align: center;
-            font-size: 0.8rem;
-        }
+    .item.weather {
+        flex:1;
+        text-align: center;
     }
 
-//Widget details
-.today__details {
-    margin-bottom: calc($spacing);
-    text-align: right;
-    padding-right: calc($spacing * 2);
+    .item.temperature {
+        flex:1;
+        text-align: left;
+        font-size: 1.2rem;
+        display: flex;
+        gap: 1px;
+    }
 
-    i {
-        font-size: 0.9rem;
-        cursor: pointer;
+    .item.wind {
+        flex:3;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .item.rain {
+        flex:2;
+        text-align: center;
+        font-size: 0.8rem;
     }
 }
 
-.today__list {
+//Widget details
+.rain__widget {
     display: flex;
     flex-direction: column;
-    padding-left: calc($spacing * 3);
+    align-items: flex-start;
+    gap: calc($spacing);
+    margin: calc($spacing) calc($spacing) calc($spacing * 2);
+    border-radius: 5px;
+    padding: calc($spacing * 4) calc($spacing * 2);
+    background-color: $color-widget;
+    font-family: 'Montserrat', sans-serif;
 
-    .today__sub-widget {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: calc($spacing);
-        padding: calc($spacing * 2) calc($spacing * 2);
-        border-radius: 5px; 
-        background-color: $color-widget;
-
-        .item.channel {
-            flex: 2;
-            font-size: 0.6rem;
-        }
-
-        .item.weather {
-            flex:1;
-            text-align: center;
-            margin-right: 5px;
-        }
-
-        .item.temperature {
-            flex:1;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-
-        .item.wind {
-            flex:3;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-
-        .item.rain {
-            flex:2;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-    } 
+     strong {
+        font-size: 1.2rem;
+        font-weight: normal;
+    }
 }
 
 //SECTION CETTE SEMAINE

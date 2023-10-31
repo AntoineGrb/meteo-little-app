@@ -13,54 +13,40 @@ const weatherIcons = [
 ]
 
 meteoApp();
+displayDate();
 
 async function meteoApp() {
-
     //APIs
-    const urlMeteoConcept = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=94068`
-    
-    //Fetch les 3 APIs
-    // [dataMeteoConcept, data2, data3] = await Promise.all([
-    //     fetchData(urlMeteoConcept),
-    //     fetchData(url2),
-    //     fetchData(ur3),
-    // ]);
-    const dataMeteoConcept = await fetchData(urlMeteoConcept);
-    const data2 = []
-    const data3 = []
+    const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&latlng=48.7991,2.4939`
+    const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=${token}&latlng=48.7991,2.4939`
+    const dataPerDay = await fetchData(urlGetDays);
+    const dataPerHour = await fetchData(urlGetHours);
 
     //Afficher les données
-    displayData(dataMeteoConcept, data2, data3);
-    console.log(dataMeteoConcept);
-
-    //Calculer la moyenne
-    const dataAvg = calculateAverage(dataMeteoConcept, data2, data3);
-
-    //Display la moyenne
-    displayAverage(dataAvg)
+    displayData(dataPerDay, dataPerHour);
 }
 
 async function fetchData(url) {
     const httpResponse = await fetch(url);
     const data = await httpResponse.json()
-    console.log(data);
     return data
 }
 
-function displayData(data1, data2, data3) {
-
+function displayData(dataPerDay, dataPerHour) {
+    console.log('Days :', dataPerDay)
+    console.log('Hour :', dataPerHour)
     let weatherCode = 0;
     let icon = '';
 
-    //METEO CONCEPT
-    const meteoConceptTodayIcon = document.querySelector('.today__sub-widget.meteo-concept .weather-icon');
-    const meteoConceptTodayTemp = document.querySelector('.today__sub-widget.meteo-concept > .temperature .temp-value');
-    const meteoConceptTodayWind = document.querySelector('.today__sub-widget.meteo-concept > .wind .wind-value');
-    const meteoConceptTodayProbaRain = document.querySelector('.today__sub-widget.meteo-concept > .rain .proba-rain-value');
-    const meteoConceptTodayQuantityRain = document.querySelector('.today__sub-widget.meteo-concept > .rain .qte-rain-value');
+    //*METEO CONCEPT
+    //*Today
+    const meteoConceptTodayIcon = document.querySelector('.today__widget .weather-icon');
+    const meteoConceptTodayTemp = document.querySelector('.today__widget > .temperature .temp-value');
+    const meteoConceptTodayWind = document.querySelector('.today__widget > .wind .wind-value');
+    const meteoConceptTodayProbaRain = document.querySelector('.today__widget > .rain .proba-rain-value');
+    const meteoConceptTodayQuantityRain = document.querySelector('.today__widget > .rain .qte-rain-value');
 
-    weatherCode = Number(data1.forecast[0].weather);
-    console.log(weatherCode);
+    weatherCode = Number(dataPerDay.forecast[0].weather);
     weatherIcons.forEach(el => {
         if (el.map.includes(weatherCode)) {
             return icon = el.img
@@ -72,32 +58,96 @@ function displayData(data1, data2, data3) {
     })
 
     meteoConceptTodayIcon.src = icon;
-    meteoConceptTodayTemp.innerText = data1.forecast[0].tmax;
-    meteoConceptTodayWind.innerText = data1.forecast[0].wind10m
-    meteoConceptTodayProbaRain.innerText = data1.forecast[0].probarain
-    meteoConceptTodayQuantityRain.innerText = data1.forecast[0].rr10
+    meteoConceptTodayTemp.innerText = dataPerDay.forecast[0].tmax;
+    meteoConceptTodayWind.innerText = dataPerDay.forecast[0].wind10m;
+    meteoConceptTodayProbaRain.innerText = dataPerDay.forecast[0].probarain;
+    meteoConceptTodayQuantityRain.innerText = dataPerDay.forecast[0].rr10;
+
+    //*Rain in hour
+    const probaRainHour = document.querySelector('.rain__widget .proba-rain-hour-value');
+    const quantityRainHour = document.querySelector('.rain__widget .qte-rain-hour-value');
+    probaRainHour.innerText = dataPerHour.forecast[0].probarain;
+    quantityRainHour.innerText = dataPerHour.forecast[0].rr1;
+
+    //*This week
+    const articleWeekElement = document.querySelector('.section.week');
+    const ulWeekElement = document.createElement('ul');
+    ulWeekElement.className = 'week__widget';
+
+    let liElementsDays = '';
+
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+        //Déterminer la date
+        const futureDate = new Date(today);
+        futureDate.setDate(today.getDate() + i);
+
+        const day = String(futureDate.getDate()).padStart(2, '0');
+        const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+        const formattedDate = `${day}/${month}`; // Format JJ/MM
+
+        //Déterminer l'icone
+        weatherCode = Number(dataPerDay.forecast[i].weather);
+        weatherIcons.forEach(el => {
+            if (el.map.includes(weatherCode)) {
+                return icon = el.img
+            }   
+            if (icon === '') {
+                icon = './src/images/nuageux.png'
+            }
+            return icon
+        })
+
+        liElementsDays += `
+            <li class="week__widget__day">
+                <div class="item date">
+                    <p class="font-widget"> <time>${formattedDate}</time> </p>
+                </div>
+                <div class="item weather">
+                    <img class="weather-icon" src="${icon}" alt="sun">
+                </div>
+                <div class="item temperature">
+                    <p class="font-widget"> ${dataPerDay.forecast[i].tmax}°C </p>
+                </div>
+                <div class="item wind">
+                    <p class="font-widget"> ${dataPerDay.forecast[i].wind10m}km/h </p>
+                </div>
+                <div class="item rain">
+                    <p class="font-widget"> ${dataPerDay.forecast[i].probarain}% </p>
+                    <p class="font-widget"> ${dataPerDay.forecast[i].rr10}mm </p>
+                </div>
+            </li>
+        `
+    }
+
+    ulWeekElement.innerHTML = liElementsDays;
+    articleWeekElement.appendChild(ulWeekElement);
 }
 
-function calculateAverage(data1, data2, data3) {
-    const tempAvg = (data1.forecast[0].tmax);
-    const windAvg = (data1.forecast[0].wind10m);
-    const probaRainAvg = (data1.forecast[0].probarain);
-    const quantityRainAvg = (data1.forecast[0].rr10);
+function calculateAverage(dataPerDay) {
+    const tempAvg = (dataPerDay.forecast[0].tmax);
+    const windAvg = (dataPerDay.forecast[0].wind10m);
+    const probaRainAvg = (dataPerDay.forecast[0].probarain);
+    const quantityRainAvg = (dataPerDay.forecast[0].rr10);
 
     return { tempAvg, windAvg, probaRainAvg, quantityRainAvg }
 }
 
-function displayAverage(dataAvg) {
-    console.log(dataAvg);
-    const meteoAvgTodayIcon = document.querySelector('.today__widget .weather-icon');
-    const meteoAvgTodayTemp = document.querySelector('.today__widget > .temperature .temp-value');
-    const meteoAvgTodayWind = document.querySelector('.today__widget > .wind .wind-value');
-    const meteoAvgTodayProbaRain = document.querySelector('.today__widget > .rain .proba-rain-value');
-    const meteoAvgTodayQuantityRain = document.querySelector('.today__widget > .rain .qte-rain-value');
+function displayDate() {
+    const today = new Date();
 
-    meteoAvgTodayIcon.src = './src/images/soleil.png'; //! A mettre à jour
-    meteoAvgTodayTemp.innerText = dataAvg.tempAvg
-    meteoAvgTodayWind.innerText = dataAvg.windAvg
-    meteoAvgTodayProbaRain.innerText = dataAvg.probaRainAvg
-    meteoAvgTodayQuantityRain.innerText = dataAvg.quantityRainAvg
+    // Tableau des noms des jours et des mois
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+    // Extraire les informations de la date
+    const dayName = days[today.getDay()];
+    const dayOfMonth = today.getDate();
+    const monthName = months[today.getMonth()];
+
+    const formattedDate = `${dayName} ${dayOfMonth} ${monthName}`;
+    
+    const headerDate = document.querySelector('.today__header > time');
+    headerDate.textContent = formattedDate;
 }
