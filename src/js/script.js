@@ -14,16 +14,39 @@ const weatherIcons = [
 
 meteoApp();
 displayDate();
+initAutocomplete(); //Init Google Places
 
-async function meteoApp() {
-    //APIs
-    const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&latlng=48.7991,2.4939`
-    const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=${token}&latlng=48.7991,2.4939`
+async function meteoApp(latitude = '48.7991' , longitude = '2.4939') {
+    //Init API Météo
+    const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=${token}&latlng=${latitude},${longitude}`
+    const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=${token}&latlng=${latitude},${longitude}`
     const dataPerDay = await fetchData(urlGetDays);
     const dataPerHour = await fetchData(urlGetHours);
 
     //Afficher les données
     displayData(dataPerDay, dataPerHour);
+}
+
+function initAutocomplete() {
+    let input = document.getElementById('autocomplete');
+    
+    //Configurer l'autocomplete Places
+    let autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener('place_changed', async function() {
+
+        let place = autocomplete.getPlace();
+        if (!place.geometry) { //Si pas de suggestion par l'utilisateur
+            return
+        }
+
+        //Récupérer et afficher les infos de la loc
+        let cityName = place.name;
+        let latitude = place.geometry.location.lat();
+        let longitude = place.geometry.location.lng();
+        document.querySelector('#localisation > h1').textContent = cityName;
+
+        await meteoApp(latitude, longitude);
+    })
 }
 
 async function fetchData(url) {
@@ -123,15 +146,6 @@ function displayData(dataPerDay, dataPerHour) {
 
     ulWeekElement.innerHTML = liElementsDays;
     articleWeekElement.appendChild(ulWeekElement);
-}
-
-function calculateAverage(dataPerDay) {
-    const tempAvg = (dataPerDay.forecast[0].tmax);
-    const windAvg = (dataPerDay.forecast[0].wind10m);
-    const probaRainAvg = (dataPerDay.forecast[0].probarain);
-    const quantityRainAvg = (dataPerDay.forecast[0].rr10);
-
-    return { tempAvg, windAvg, probaRainAvg, quantityRainAvg }
 }
 
 function displayDate() {

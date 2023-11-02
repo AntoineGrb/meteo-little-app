@@ -9,13 +9,14 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
-    <script src="./src/js/script.js" type="module"> </script>
 	<script src="https://kit.fontawesome.com/5c520df75a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
 		<header class="header">
-			<h1 class="header__title"> Saint Maur des fossés <i class="fa-solid fa-pen"></i> </h1>
+			<!-- <h1 class="header__title"> Saint Maur des fossés <i class="fa-solid fa-pen"></i> </h1> -->
+			<input id="autocomplete" type="text" placeholder="Sélectionner une ville">
+			<div id="localisation"> <h1>Saint Maur des fossés</h1> </div>
 		</header>
 
 		<!-- METEO DU JOUR -->
@@ -61,5 +62,9 @@
 			<p> Agrégateur de météo - A. Grubert </p>
 		</footer>
 	</div>
+
+	<!-- LES SCRIPS -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyX0JVbMEIqFUyRi_D2q3Ihjt9-NMEg6o&libraries=places"></script>
+	<script src="./src/js/script.js" type="module"> </script>
 </body>
 </html>
