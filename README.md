@@ -2,6 +2,8 @@
 
 J'ai conçu cette petite application de météo afin de m'exercer avec l'appel d'APIs publiques. 
 
+Je l'ai uploadé sur Vercel, voici le [lien](https://meteo-little-app.vercel.app/) ! 
+
 ## Présentation 🌟
 
 L'application est très simple : 
