@@ -7,9 +7,14 @@
 //---- BASE ----- 
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     margin: 0 auto;
     background-color: $color-background;
+}
+
+main {
+    opacity: 1;
+    transition: opacity .9s ease-in-out;
 }
 
 h1, h2, h3, p, summary {

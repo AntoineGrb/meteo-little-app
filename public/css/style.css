@@ -6,9 +6,14 @@
 
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
   background-color: #171818;
+}
+
+main {
+  opacity: 1;
+  transition: opacity 0.9s ease-in-out;
 }
 
 h1, h2, h3, p, summary {
@@ -37,9 +42,14 @@ h3 {
   padding: 20px 0;
   text-align: center;
 }
-.header i {
-  font-size: 0.9rem;
-  cursor: pointer;
+.header .location__choice {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 0 50px;
+}
+.header .location__choice input {
+  width: 50%;
 }
 
 footer {
@@ -56,7 +66,7 @@ footer {
   padding: 10px;
   margin: 0 5px 20px;
   border-radius: 5px;
-  background-color: rgba(44, 49, 53, 0.7019607843);
+  background-color: rgba(59, 61, 63, 0.7019607843);
 }
 .section__title {
   margin-bottom: 20px;
@@ -65,36 +75,49 @@ footer {
   margin-bottom: 10px;
 }
 
+.temp-max-value {
+  color: rgb(194, 40, 40);
+}
+
+.temp-min-value {
+  color: rgb(101, 154, 187);
+}
+
 .today__widget {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin: 5px 5px 10px;
+  margin: 5px 5px;
   border-radius: 5px;
-  padding: 20px 10px;
-  background-color: #78A1BB;
+  padding: 10px 0;
+  background-color: #54575a;
   font-family: "Montserrat", sans-serif;
 }
 .today__widget .item.weather {
   flex: 1;
   text-align: center;
+  text-align: right;
+  padding-right: 5px;
+}
+.today__widget .item.weather img {
+  width: 40px;
 }
 .today__widget .item.temperature {
-  flex: 1;
-  text-align: left;
+  flex: 1.5;
   font-size: 1.2rem;
   display: flex;
   gap: 1px;
+  text-align: center;
 }
 .today__widget .item.wind {
-  flex: 3;
-  font-size: 0.8rem;
-  text-align: center;
+  flex: 1;
+  font-size: 0.9rem;
+  text-align: left;
 }
 .today__widget .item.rain {
-  flex: 2;
-  text-align: center;
-  font-size: 0.8rem;
+  flex: 1;
+  text-align: left;
+  font-size: 0.9rem;
 }
 
 .rain__widget {
@@ -105,7 +128,7 @@ footer {
   margin: 5px 5px 10px;
   border-radius: 5px;
   padding: 20px 10px;
-  background-color: #78A1BB;
+  background-color: #54575a;
   font-family: "Montserrat", sans-serif;
 }
 .rain__widget strong {
@@ -116,7 +139,6 @@ footer {
 .week__widget {
   display: flex;
   flex-direction: column;
-  background-color: #78A1BB;
   padding-bottom: 5px;
   border-radius: 5px;
   font-family: "Montserrat", sans-serif;
@@ -129,29 +151,28 @@ footer {
   border-bottom: 1px solid white;
 }
 .week__widget__day .item.date {
-  flex: 1;
+  flex: 0.5;
   text-align: left;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 .week__widget__day .item.weather {
   flex: 1;
   text-align: center;
-  margin-right: 5px;
 }
 .week__widget__day .item.temperature {
-  flex: 1;
+  flex: 1.5;
   text-align: left;
   display: flex;
   gap: 1px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .week__widget__day .item.wind {
-  flex: 3;
+  flex: 1;
   font-size: 0.8rem;
   text-align: center;
 }
 .week__widget__day .item.rain {
-  flex: 2;
+  flex: 1;
   text-align: center;
   font-size: 0.8rem;
 }

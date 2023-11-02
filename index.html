@@ -15,56 +15,57 @@
     <div class="container">
 		<header class="header">
 			<!-- <h1 class="header__title"> Saint Maur des fossés <i class="fa-solid fa-pen"></i> </h1> -->
-			<input id="autocomplete" type="text" placeholder="Sélectionner une ville">
-			<div id="localisation"> <h1>Saint Maur des fossés</h1> </div>
+			<div class="location__choice">
+				<p> Sélectionner une ville : </p>
+				<input id="autocomplete" type="text" placeholder="Sélectionner une ville">
+			</div>
+			<div id="location" class="location__display"> <h1>Saint Maur des fossés</h1> </div>
 		</header>
 
 		<!-- METEO DU JOUR -->
-		<article class="section today">
-			<h2 class="section__title today__title"> Aujourd'hui </h2>
-			<h3 class="section__header today__header"> <time></time> </h3>
-
-			<!-- Widget principal-->
-			<div class="section__widget today__widget">
-				<div class="item weather"> 
-					<img class='weather-icon' src="" alt="sun"> 
+		<main>
+			<article class="section today">
+				<h2 class="section__title today__title"> Aujourd'hui </h2>
+				<h3 class="section__header today__header"> <time></time> </h3>
+				<!-- Widget principal-->
+				<div class="section__widget today__widget">
+					<div class="item weather">
+						<img class='weather-icon' src="" alt="sun">
+					</div>
+					<div class="item temperature">
+						<p class="font-widget"> <span class="temp-max-value">XX°</span> / <span class="temp-min-value">XX°</span> </p>
+					</div>
+					<div class="item wind">
+						<p class="font-widget"> <span class="wind-value">XX</span>km/h </p>
+					</div>
+					<div class="item rain">
+						<p class="font-widget"> <span class="proba-rain-value">XX</span>% </p>
+						<p class="font-widget"> <span class="qte-rain-value">XX</span>mm </p>
+					</div>
 				</div>
-				<div class="item temperature"> 
-					<p class="font-widget"> <span class="temp-value">XX</span>°C </p> 
-					<img class="weather-icon" src="../../src/images/thermometre.png" alt="">
+			</article>
+			<!--- PLEUVOIR DANS L'HEURE -->
+			<article class="section rain-in-hour">
+				<h2 class="section__title week__title"> Pluie dans les 3 heures </h2>
+				<div class="section__widget rain__widget">
+					<p> Probalité de pluie : <strong><span class="proba-rain-hour-value"></span>%</strong></p>
+					<p> Quantité maximum de pluie : <strong><span class="qte-rain-hour-value"></span>mm</strong></p>
 				</div>
-				<div class="item wind"> 
-					<p class="font-widget"> <span class="wind-value">XX</span>km/h </p> 
-				</div>
-				<div class="item rain"> 
-					<p class="font-widget"> <span class="proba-rain-value">XX</span>% </p> 
-					<p class="font-widget"> <span class="qte-rain-value">XX</span>mm </p>
-				</div>
-			</div>
-		</article>
-
-		<!--- PLEUVOIR DANS L'HEURE -->
-		<article class="section rain-in-hour">
-			<h2 class="section__title week__title"> Pluie dans les 3 heures </h2>
-			<div class="section__widget rain__widget">
-				<p> Probalité de pluie : <strong><span class="proba-rain-hour-value"></span>%</strong></p>
-				<p> Quantité maximum de pluie : <strong><span class="qte-rain-hour-value"></span>mm</strong></p>
-			</div>
-		</article>
-
-		<!-- METEO DE LA SEMAINE -->
-		<article class="section week">
-			<h2 class="section__title week__title"> Cette semaine </h2>
-			<h3 class="section__header week__header"> Vue : <span> Meteo Concept </span> <i class="fa-solid fa-chevron-down"></i> </h3>
-			<!-- Ajout en dynamique des jours de la semaine -->
-		</article>
+			</article>
+			<!-- METEO DE LA SEMAINE -->
+			<article class="section week">
+				<h2 class="section__title week__title"> Cette semaine </h2>
+				<h3 class="section__header week__header"> Vue : <span> Meteo Concept </span> <i class="fa-solid fa-chevron-down"></i> </h3>
+				<!-- Ajout en dynamique des jours de la semaine -->
+			</article>
+		</main>
 		<footer>
-			<p> Agrégateur de météo - A. Grubert </p>
+			<p> Météo App - A. Grubert </p>
 		</footer>
 	</div>
 
 	<!-- LES SCRIPS -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyX0JVbMEIqFUyRi_D2q3Ihjt9-NMEg6o&libraries=places"></script>
-	<script src="./src/js/script.js" type="module"> </script>
+	<script src="./src/js/script.min.js" type="module"> </script>
 </body>
 </html>

@@ -3,8 +3,14 @@
     padding: calc($spacing * 4) 0;
     text-align: center;
 
-    i {
-        font-size: 0.9rem;
-        cursor: pointer;
+    .location__choice {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin: 5px 0 50px;
+
+        input {
+            width: 50%;
+        }
     }
 }
