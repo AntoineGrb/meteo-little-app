@@ -17,22 +17,22 @@ initAutocomplete(); //Init l'API Google Places
 
 //--- AFFICHAGE DES DONNEES METEO ---
 async function initMeteoApp(latitude = '48.7991' , longitude = '2.4939') {
-    //Init API Météo
-    const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=29afc1df92b940bb0a443d33e644f026da4af771eeae29f7485195348c6c3fcb&latlng=${latitude},${longitude}`
-    const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=29afc1df92b940bb0a443d33e644f026da4af771eeae29f7485195348c6c3fcb&latlng=${latitude},${longitude}`
-    
-    //Fetch les datas des URLs
-    const dataPerDay = await fetchData(urlGetDays);
-    const dataPerHour = await fetchData(urlGetHours);
 
+    try {
+        //Appel à la fonction serverless
+        const response = await fetch(`/api/tokenMeteoConcept?latitude=${latitude}&longitude=${longitude}`);
+        if (!response.ok) {
+        throw new Error('Probleme détecté')
+    }
+    const { dataPerDay, dataPerHour } = await response.json();
+    
     //Afficher les données
     displayData(dataPerDay, dataPerHour);
-}
-
-async function fetchData(url) {
-    const httpResponse = await fetch(url);
-    const data = await httpResponse.json()
-    return data
+    
+    } catch (error) {
+        console.error(error);
+    }
+    
 }
 
 function displayData(dataPerDay, dataPerHour) {
