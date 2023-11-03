@@ -5,12 +5,8 @@ export default async (req, res) => {
   const { latitude, longitude} = req.query;
   console.log(latitude, longitude)
   
-  // const apiToken = process.env.METEO_API_TOKEN; // Utilise la variable d'environnement pour le token
-  
-  const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=29afc1df92b940bb0a443d33e644f026da4af771eeae29f7485195348c6c3fcb&latlng=${latitude},${longitude}`;
-  const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=29afc1df92b940bb0a443d33e644f026da4af771eeae29f7485195348c6c3fcb&latlng=${latitude},${longitude}`;
-
-  //${process.env.METEO_API_TOKEN}
+  const urlGetDays = `https://api.meteo-concept.com/api/forecast/daily?token=${process.env.METEO_API_TOKEN}&latlng=${latitude},${longitude}`;
+  const urlGetHours = `https://api.meteo-concept.com/api/forecast/nextHours?token=${process.env.METEO_API_TOKEN}&latlng=${latitude},${longitude}`;
 
   try {
     const [dataPerDayResponse, dataPerHourResponse] = await Promise.all([
@@ -21,6 +17,8 @@ export default async (req, res) => {
     if (!dataPerDayResponse.ok || !dataPerHourResponse.ok) {
       throw new Error('Erreur lors de la récupération des données météo');
     }
+
+    console.log('Token env ok')
 
     const dataPerDay = await dataPerDayResponse.json();
     const dataPerHour = await dataPerHourResponse.json();
