@@ -20,6 +20,7 @@ async function initMeteoApp(latitude = '48.7991' , longitude = '2.4939') {
 
     try {
         //Appel à la fonction serverless
+        handleLoader(true)
         const response = await fetch(`/api/tokenMeteoConcept?latitude=${latitude}&longitude=${longitude}`);
         if (!response.ok) {
         throw new Error('Probleme détecté')
@@ -32,6 +33,8 @@ async function initMeteoApp(latitude = '48.7991' , longitude = '2.4939') {
     
     } catch (error) {
         console.error(error);
+    } finally {
+        handleLoader(false)
     }
     
 }
@@ -190,4 +193,9 @@ function loadApp() {
         container.style.transition = ''; //Remise de l'effet de transition pour le passage à 1
         container.style.opacity = "1";
     }, 50) //Délai court pour s'assurer que le changement est détecté
+}
+
+function handleLoader(show) {
+    document.getElementById("loader").style.display = show ? 'block' : 'none';
+    document.getElementById("main").style.display = show ? 'none' : 'block';
 }
