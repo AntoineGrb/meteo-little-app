@@ -159,9 +159,6 @@ function initAutocomplete() {
         document.querySelector('#location > h1').textContent = cityName;
 
         await initMeteoApp(latitude, longitude);
-
-        //Recharger le main avec transition
-        loadApp();
     })
 }
 
@@ -184,16 +181,6 @@ function initTodayDate() {
     headerDate.textContent = formattedDate;
 }
 
-//--- FIXER UNE TRANSITION D'OPACITE LORS DU CHARGEMENT DES DATAS
-function loadApp() {
-    const container = document.querySelector('main');
-    container.style.transition = 'none'; //Suppression de la transition pour le passage en opacité 0
-    container.style.opacity = "0";
-    setTimeout(() => {
-        container.style.transition = ''; //Remise de l'effet de transition pour le passage à 1
-        container.style.opacity = "1";
-    }, 50) //Délai court pour s'assurer que le changement est détecté
-}
 
 function handleLoader(show) {
     document.getElementById("loader").style.display = show ? 'block' : 'none';
