@@ -26,7 +26,7 @@ async function initMeteoApp(latitude = '48.7991' , longitude = '2.4939') {
         throw new Error('Probleme détecté')
     }
     const { dataPerDay, dataPerHour } = await response.json();
-    console.log('new method ok')
+    console.log('new method ok');
     
     //Afficher les données
     displayData(dataPerDay, dataPerHour);
@@ -183,6 +183,6 @@ function initTodayDate() {
 
 
 function handleLoader(show) {
-    document.getElementById("loader").style.display = show ? 'block' : 'none';
+    document.getElementById("loader-container").style.display = show ? 'flex' : 'none';
     document.getElementById("main").style.display = show ? 'none' : 'block';
 }
