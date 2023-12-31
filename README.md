@@ -1,4 +1,4 @@
-# Appli météo 📖🎥
+# Appli météo 🌤️
 
 J'ai conçu cette petite application de météo afin de m'exercer avec l'appel d'APIs publiques. 
 
