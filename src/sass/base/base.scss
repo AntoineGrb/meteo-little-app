@@ -11,11 +11,14 @@
     min-height: 100vh;
     margin: 0 auto;
     background-color: $color-background;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     opacity: 1;
     transition: opacity .9s ease-in-out;
+    flex-grow: 1;
 }
 
 h1, h2, h3, p, summary {
